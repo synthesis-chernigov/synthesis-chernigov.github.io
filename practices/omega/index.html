@@ -10,12 +10,33 @@ permalink: /practices/omega/
             {% for primordiality in site.data.primordiality %}
             <h3>{{primordiality.title}}</h3>
             <div class="row">
-                <div class="col-md-3"><a href="/practices/omega/{{primordiality.number}}.html">{{ primordiality.dimensions }} присутсвий(я)</a></div>
-                <div class="col-md-3"><a href="/practices/omega/{{primordiality.number}}-higher.html">{{ primordiality.dimensions | divided_by: 2 }} вышестоящих присутсвий(я)</a></div>
+                <div class="col-md-12">
+                    <a href="/practices/omega/{{primordiality.number}}.html">{{ primordiality.dimensions }} присутсвий(я)</a> <span class="progress-{{primordiality.number}}"></span> <a href="/practices/omega/{{primordiality.number}}.html#practice/start">Стяжать</a><br>
+                    <a href="/practices/omega/{{primordiality.number}}-higher.html">{{ primordiality.dimensions | divided_by: 2 }} вышестоящих присутсвий(я)</a> <span class="progress-{{primordiality.number}}-higher"></span> <a href="/practices/omega/{{primordiality.number}}-higher.html#practice/reset">Стяжать</a>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<script>
+    $(function() {
+        for (var i = 1; i <= 9; i++) {
+            var total = Math.pow(2, 4 + i);
+            var p = parseInt(window.localStorage.getItem('presence-' + i));
+            var ph = window.localStorage.getItem('presence-' + i + '-higher');
+
+            if (p) {
+                $('.progress-' + i).html(total !== p ? p + ' из ' + total : '<span class="glyphicon glyphicon-saved" aria-hidden="true"></span>');
+            }
+
+            if (ph >= 7) {
+                $('.progress-' + i + '-higher').html('<span class="glyphicon glyphicon-saved" aria-hidden="true"></span>');
+            }
+
+        }
+    });
+</script>
 
 

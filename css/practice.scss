@@ -1,0 +1,59 @@
+---
+---
+
+body.practice {
+  @media only screen and (max-width: 768px) {
+    > nav, > footer {
+      display: none;
+    }
+
+    .practice-container {
+      h1 {
+        display: none;
+      }
+
+      .practice-title {
+        display: none;
+      }
+    }
+  }
+
+  .bs-docs-sidebar {
+    display: none;
+  }
+
+  .practice-container {
+    h1, h2, h3, .step {
+      display: none;
+    }
+
+    .practice-title {
+      display: block;
+
+      a {
+        display: none;
+      }
+    }
+
+    .step.active {
+      display: block;
+    }
+
+
+
+    .step-navigation {
+      display: block;
+      padding: 10px;
+    }
+  }
+}
+
+.practice-container {
+  .step-navigation {
+    display: none;
+  }
+
+  .step {
+    padding: 10px 20px;
+  }
+}

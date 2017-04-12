@@ -1,0 +1,85 @@
+<script>
+    $(function() {
+        var practiceAction = function() {
+            var action = window.location.hash.split('/');
+
+            if ('#practice' == action[0]) {
+                var primordiality = $('.practice-container').data('primordiality');
+                var presence = parseInt(window.localStorage.getItem('presence-' + primordiality)) || 1;
+                var max = parseInt($('.practice-container').data('max'));
+
+                switch (action[1]) {
+                    case 'reset':
+                        window.localStorage.setItem('presence-' + primordiality, 1);
+                    case 'start':
+                        if (presence >= max) {
+                            window.localStorage.setItem('presence-' + primordiality, 1);
+                        }
+
+                        window.location.href = '#practice/entry';
+                        break;
+
+                    case 'entry':
+                        var no = parseInt(action[2]) || 1;
+                        var $entry = $('#entry-' + no);
+                        $('body').addClass('practice');
+                        $('.practice-container .step').removeClass('active');
+                        $('.practice-section-title').hide();
+                        $('.practice-section-title.entry').show();
+
+                        if ($entry.length && !($entry.hasClass('once') && presence > 1)) {
+                            $('.step-navigation a.next').prop('href', '#practice/entry/' + (no+1));
+                            $('.step-navigation a.exit').hide();
+                            $entry.addClass('active');
+                        } else {
+                            window.location.href = '#practice/step';
+                        }
+
+                        break;
+                    case 'step':
+                        var no = parseInt(action[2]) || presence;
+                        var $entry = $('#step-' + no);
+                        $('body').addClass('practice');
+                        $('.practice-container .step').removeClass('active');
+                        $('.practice-section-title').hide();
+                        $('.practice-section-title.steps').show();
+
+                        if ($entry.length) {
+                            window.localStorage.setItem('presence-' + primordiality, no);
+                            $('.step-navigation a.next').prop('href', '#practice/step/' + (no+1));
+                            $('.step-navigation a.exit').show();
+                            $entry.addClass('active');
+                        } else {
+                            window.location.href = '#practice/exit';
+                        }
+
+                        break;
+
+                    case 'exit':
+                        var no = parseInt(action[2]) || 1;
+                        var $entry = $('#exit-' + no);
+                        $('body').addClass('practice');
+                        $('.practice-container .step').removeClass('active');
+                        $('.practice-section-title').hide();
+                        $('.practice-section-title.exit').show();
+
+                        if ($entry.length) {
+                            $('.step-navigation a.next').prop('href', '#practice/exit/' + (no+1));
+                            $('.step-navigation a.exit').hide();
+                            $entry.addClass('active');
+                        } else {
+                            $('body').empty();
+                            window.location.href = '/practices/omega/';
+                        }
+
+                        break;
+                }
+            }
+
+
+        };
+
+        $(window).on('hashchange', function() { practiceAction(); });
+        practiceAction()
+    })
+</script>
