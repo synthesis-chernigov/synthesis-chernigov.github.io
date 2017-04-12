@@ -1,0 +1,21 @@
+---
+layout: default
+title:  "Практика стяжания Омеги"
+permalink: /practices/omega/
+---
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-12" role="main">
+            {% for primordiality in site.data.primordiality %}
+            <h3>{{primordiality.title}}</h3>
+            <div class="row">
+                <div class="col-md-3"><a href="/practices/omega/{{primordiality.number}}.html">{{ primordiality.dimensions }} присутсвий(я)</a></div>
+                <div class="col-md-3"><a href="/practices/omega/{{primordiality.number}}-higher.html">{{ primordiality.dimensions | divided_by: 2 }} вышестоящих присутсвий(я)</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
