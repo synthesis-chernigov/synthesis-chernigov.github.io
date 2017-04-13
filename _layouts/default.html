@@ -76,7 +76,7 @@
   
   ga('send', 'pageview', { 'page': location.pathname + location.search  + location.hash }); 
     
-  $(window).hashchange( function(){
+  $(window).on('hashchange', function(){
     ga('send', 'pageview', { 'page': location.pathname + location.search  + location.hash });
   });
 
