@@ -20,7 +20,7 @@
                         break;
 
                     case 'entry':
-                        var no = parseInt(action[2]) || 1;
+                        var no = parseInt(action[2]) || 0;
                         var $entry = $('#entry-' + no);
                         $('body').addClass('practice');
                         $('.practice-container .step').removeClass('active');
