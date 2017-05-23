@@ -4,21 +4,32 @@ title:  "Практика стяжания Омеги"
 permalink: /practices/omega/
 ---
 
+<div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container"><h1>Программа Омеги</h1></div>
+</div>
+
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-md-12" role="main">
-            <div class="alert alert-info" role="alert">
-                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                <strong>Стяжающий, помни!</strong>
-                Ключ к отличному исполнению практики лежит в концентрации на внутреннем проживании.
-            </div>
+            <p>Друзья! Перед вами инструмент, который поможет вам в стяжании программы Омеги.</p>
+            <p>Стяжание потенциала 512 рицы Человека Мг идет по присутствиям 8 Изначальностей (и только после стяжания Абсодюта Фа переходим в 9 И).<p>
+            <p>Концентрируйтесь на внутреннем проживании.</p>
+            <p>Для фиксации перехода по присутствиям - нажимайте кнопку "стяжать", при завершении практики - кнопку "выход".</p>
 
             {% for primordiality in site.data.primordiality %}
-            <h3>{{primordiality.title}}</h3>
+            <h3>{{primordiality.title}} {% if 9 == primordiality.number %}<br>
+                <small>после стяжания Абсолютного Огня</small>
+                {% endif %}
+            </h3>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="/practices/omega/{{primordiality.number}}.html">{{ primordiality.dimensions }} присутсвий(я)</a> <span class="progress-{{primordiality.number}}"></span> <a href="/practices/omega/{{primordiality.number}}.html#practice/start">Стяжать</a><br>
-                    <a href="/practices/omega/{{primordiality.number}}-higher.html">{{ primordiality.dimensions | divided_by: 2 }} вышестоящих присутсвий(я)</a> <span class="progress-{{primordiality.number}}-higher"></span> <a href="/practices/omega/{{primordiality.number}}-higher.html#practice/reset">Стяжать</a>
+                    <a href="/practices/omega/{{primordiality.number}}.html">{{ primordiality.dimensions }}
+                        присутсвий(я)</a> <span class="progress-{{primordiality.number}}"></span> <a
+                        href="/practices/omega/{{primordiality.number}}.html#practice/start">Стяжать</a><br>
+                    <a href="/practices/omega/{{primordiality.number}}-higher.html">{{ primordiality.dimensions |
+                        divided_by: 2 }} вышестоящих присутсвий(я)</a> <span
+                        class="progress-{{primordiality.number}}-higher"></span> <a
+                        href="/practices/omega/{{primordiality.number}}-higher.html#practice/reset">Стяжать</a>
                 </div>
             </div>
             {% endfor %}
@@ -27,7 +38,7 @@ permalink: /practices/omega/
 </div>
 
 <script>
-    $(function() {
+    $(function () {
         for (var i = 1; i <= 9; i++) {
             var total = Math.pow(2, 4 + i);
             var p = parseInt(window.localStorage.getItem('presence-' + i));
